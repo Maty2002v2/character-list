@@ -1,19 +1,23 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 
+// import CharacterType from "../types/CharacterType"
+import ResultApiCharacter from "../types/ResultApiCharacter";
+
 export const useCharacterApiStore = defineStore("CharacterApi", {
   state: () => {
     return {
-      characterData: [],
+      resultApi: Object as unknown as ResultApiCharacter,
     };
   },
-  getters: {},
+  getters: {
+    characterData: (state) => state.resultApi.results,
+  },
   actions: {
     async fetchData() {
-      const { data } = await axios.get(
-        "https://rickandmortyapi.com/api/character"
-      );
-      console.log(data);
+      await axios
+        .get("https://rickandmortyapi.com/api/character")
+        .then((response) => (this.resultApi = response.data));
     },
   },
 });

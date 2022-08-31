@@ -1,5 +1,5 @@
 <template>
-  <div class="character-list">
+  <div class="character-list animate__animated animate__fadeIn">
     <div class="character-list__list">
       <list-item
         v-for="(character, index) in characterData"
