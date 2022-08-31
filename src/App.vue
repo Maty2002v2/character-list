@@ -1,11 +1,19 @@
 <template>
-  <the-character-list />
+  <Suspense>
+    <template #default>
+      <the-character-list />
+    </template>
+    <template #fallback>
+      <app-loader />
+    </template>
+  </Suspense>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 import TheCharacterList from "./components/characterList/TheCharacterList.vue";
+import AppLoader from "./components/AppLoader.vue";
 
 export default defineComponent({
   props: {
@@ -13,6 +21,7 @@ export default defineComponent({
   },
   components: {
     TheCharacterList,
+    AppLoader,
   },
 });
 </script>
@@ -24,6 +33,5 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
