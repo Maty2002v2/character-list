@@ -5,6 +5,7 @@
         v-for="(character, index) in characterData"
         :key="index"
         :character="character"
+        @click="$emit('listItemHasSelected', character)"
       />
     </div>
   </div>

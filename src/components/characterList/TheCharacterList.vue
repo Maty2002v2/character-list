@@ -1,25 +1,46 @@
 <template>
-  <div>
-    <the-list />
+  <div style="overflow: hidden">
+    <the-list @listItemHasSelected="showSelectedItem" />
+
+    <teleport to="#modal">
+      <the-description-character-modal
+        :character="selectedCharacter"
+        :isShow="showDescriptionModal"
+      />
+    </teleport>
   </div>
 </template>
 
-<script>
-import { defineComponent } from "vue";
+<script lang="ts">
+import { defineComponent, ref } from "vue";
 
 import TheList from "./TheList.vue";
+import TheDescriptionCharacterModal from "./TheDescriptionCharacterModal.vue";
 
-import { useCharacterApiStore } from "../../stores/CharacterApiStore";
+import { storeToRefs } from "pinia";
+import { useMainStore } from "../../stores/MainStore";
+
+import CharacterType from "../../types/CharacterType";
 
 export default defineComponent({
   name: "TheCharacterList",
   components: {
     TheList,
+    TheDescriptionCharacterModal,
   },
   setup() {
-    const { fetchData } = useCharacterApiStore();
+    const { showDescriptionModal } = storeToRefs(useMainStore());
+    const { setShowDescriptionModal } = useMainStore();
 
-    return { fetchData };
+    let selectedCharacter = ref({});
+
+    const showSelectedItem = (character: CharacterType) => {
+      selectedCharacter.value = character;
+      setShowDescriptionModal(true);
+      document.documentElement.style.overflow = "hidden";
+    };
+
+    return { selectedCharacter, showDescriptionModal, showSelectedItem };
   },
 });
 </script>

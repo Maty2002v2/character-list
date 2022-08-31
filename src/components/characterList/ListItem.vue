@@ -4,7 +4,8 @@
       class="character-list-item__image"
       v-lazy="{
         src: character.image,
-        loading: 'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
+        loading:
+          'https://c.tenor.com/BgR83Df82t0AAAAi/portal-rick-and-morty.gif',
       }"
       alt="image"
     />
@@ -36,7 +37,7 @@ export default defineComponent({
 .character-list-item {
   max-width: 200px;
   max-height: 300px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   cursor: pointer;
 
   &__image {
@@ -47,6 +48,8 @@ export default defineComponent({
   &__content {
     padding: 5px;
     box-sizing: border-box;
+    text-align: center;
+    background-color: $color-elements;
   }
 }
 </style>
