@@ -2,7 +2,10 @@
   <div class="character-list-item">
     <img
       class="character-list-item__image"
-      :src="character.image"
+      v-lazy="{
+        src: character.image,
+        loading: 'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
+      }"
       alt="image"
     />
     <div class="character-list-item__content">
