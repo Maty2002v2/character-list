@@ -7,7 +7,7 @@
         loading:
           'https://c.tenor.com/BgR83Df82t0AAAAi/portal-rick-and-morty.gif',
       }"
-      alt="image"
+      alt="character image"
     />
     <div class="character-list-item__content">
       {{ character.name }}

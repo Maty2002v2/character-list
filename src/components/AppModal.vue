@@ -42,6 +42,7 @@ export default defineComponent({
   min-height: 100%;
   padding-top: 4vh;
   box-sizing: border-box;
+
   background: rgba($color: #000000, $alpha: 0.4);
 
   &__slot {

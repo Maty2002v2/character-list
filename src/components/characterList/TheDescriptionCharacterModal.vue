@@ -12,7 +12,7 @@
             loading:
               'https://c.tenor.com/BgR83Df82t0AAAAi/portal-rick-and-morty.gif',
           }"
-          alt="image"
+          alt="character image"
         />
         <div class="description-character__content">
           <h1 class="description-character__h1">
@@ -83,15 +83,19 @@ export default defineComponent({
   gap: 20px;
   max-width: 300px;
   padding: 10px 30px;
+
   background-color: $color-elements;
 
   &__back-button {
     width: 70px;
     height: 25px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
     color: $color-text;
+
     background-color: $color-elements;
+
     cursor: pointer;
   }
 

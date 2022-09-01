@@ -23,17 +23,18 @@ export default defineComponent({
 }
 
 .app-loader {
-  height: 70vh;
   display: grid;
+  height: 70vh;
   overflow: hidden;
 
   &__portal {
-    background-color: #66ba4f;
-    box-shadow: 0px 0px 40px 10px #448c3f;
-    height: 10em;
     width: 10em;
+    height: 10em;
+    box-shadow: 0px 0px 40px 10px #448c3f;
     border-radius: 50%;
     margin: auto;
+
+    background-color: #66ba4f;
     background: radial-gradient(
         circle at 77% 80%,
         #fdfeb4 2.5%,
@@ -68,6 +69,7 @@ export default defineComponent({
       radial-gradient(circle at 49% 35%, transparent 40%, #fff8c5 37%),
       radial-gradient(circle at 79% 59%, transparent 40%, #fffe9c 37%),
       radial-gradient(circle at 50% 50%, #fdfeb4 100%, #fdfeb4 100%);
+
     animation: rotate 1.5s ease infinite;
   }
 }

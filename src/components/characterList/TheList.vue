@@ -14,10 +14,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import { storeToRefs } from "pinia";
-
 import ListItem from "./ListItem.vue";
 
+import { storeToRefs } from "pinia";
 import { useCharacterApiStore } from "../../stores/CharacterApiStore";
 
 export default defineComponent({
