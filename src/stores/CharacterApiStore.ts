@@ -1,7 +1,8 @@
 import axios from "axios";
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 
-// import CharacterType from "../types/CharacterType"
+import { useMainStore } from "./MainStore";
+
 import ResultApiCharacter from "../types/ResultApiCharacter";
 
 export const useCharacterApiStore = defineStore("CharacterApi", {
@@ -11,7 +12,15 @@ export const useCharacterApiStore = defineStore("CharacterApi", {
     };
   },
   getters: {
-    characterData: (state) => state.resultApi.results,
+    characterData: (state) => {
+      const { phraseToFilter } = storeToRefs(useMainStore());
+
+      return state.resultApi.results.filter((character) =>
+        character.name
+          .toLowerCase()
+          .includes(phraseToFilter.value.toLowerCase())
+      );
+    },
   },
   actions: {
     async fetchData() {
