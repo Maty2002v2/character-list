@@ -15,15 +15,22 @@
           alt="image"
         />
         <div class="description-character__content">
-          <h1 class="description-character__h1">{{ character.name }}</h1>
-          <p class="description-character__p">status {{ character.status }}</p>
+          <h1 class="description-character__h1">
+            {{ character.name }}
+          </h1>
+          <p class="description-character__p">Status: {{ character.status }}</p>
           <p class="description-character__p">
-            species {{ character.species }}
+            Species:
+            <i>{{ character.species }}</i>
           </p>
-          <p class="description-character__p">type {{ character.type }}</p>
-          <p class="description-character__p">gender {{ character.gender }}</p>
           <p class="description-character__p">
-            created {{ character.created }}
+            Type: <i>{{ character.type ? character.type : "?" }}</i>
+          </p>
+          <p class="description-character__p">
+            Gender: <i>{{ character.gender }}</i>
+          </p>
+          <p class="description-character__p">
+            Created: <i>{{ character.created }}</i>
           </p>
         </div>
       </div>
@@ -98,6 +105,10 @@ export default defineComponent({
     font-size: max(1.5vw, 15px);
     white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  &__span {
+    font-weight: 600;
   }
 }
 </style>
