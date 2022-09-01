@@ -1,11 +1,14 @@
 {
   "name": "character-list",
   "version": "0.1.0",
+  "homepage": "https://Maty2002v2.github.io/character-list/",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "ajax": "0.0.4",
@@ -13,6 +16,7 @@
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "element-plus": "^2.2.15",
+    "gh-pages": "^4.0.0",
     "pinia": "^2.0.21",
     "vue": "^3.2.13",
     "vue-axios": "^3.4.1",

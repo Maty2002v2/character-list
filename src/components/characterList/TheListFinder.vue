@@ -26,10 +26,10 @@ export default defineComponent({
     const { fetchData, setPhraseToFilter, setPageNumber } =
       useCharacterApiStore();
 
-    let timeout = ref(null);
+    let timeout = ref(0);
 
     onUnmounted(() => {
-      clearInterval(timeout.value);
+      clearTimeout(timeout.value);
     });
 
     const phrase = ref("");
@@ -39,7 +39,7 @@ export default defineComponent({
         clearTimeout(timeout.value);
       }
 
-      timeout.value = setTimeout(() => {
+      timeout.value = window.setTimeout(() => {
         setPageNumber(1);
         setPhraseToFilter(phrase.value);
         setLoadingList(true);
