@@ -2,11 +2,16 @@
   <div class="character-list">
     <the-list-finder />
 
-    <the-list v-show="!loadingList" @listItemHasSelected="showSelectedItem" />
+    <div v-if="!isError">
+      <the-list v-show="!loadingList" @listItemHasSelected="showSelectedItem" />
 
-    <app-loader v-show="loadingList" />
+      <app-loader v-show="loadingList" />
 
-    <the-pagination />
+      <the-pagination />
+    </div>
+    <p v-else class="character-list__error-message">
+      Oops. Something went wrong.
+    </p>
 
     <teleport to="#modal">
       <the-description-character-modal
@@ -41,7 +46,9 @@ export default defineComponent({
     ThePagination,
   },
   setup() {
-    const { showDescriptionModal, loadingList } = storeToRefs(useMainStore());
+    const { showDescriptionModal, loadingList, isError } = storeToRefs(
+      useMainStore()
+    );
     const { setShowDescriptionModal } = useMainStore();
 
     let selectedCharacter = ref({});
@@ -56,6 +63,7 @@ export default defineComponent({
       selectedCharacter,
       showDescriptionModal,
       loadingList,
+      isError,
       showSelectedItem,
     };
   },
@@ -65,5 +73,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .character-list {
   margin: 10px 50px;
+
+  &__error-message {
+    font-size: 40px;
+    font-weight: 900;
+  }
 }
 </style>

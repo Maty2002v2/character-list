@@ -22,7 +22,7 @@ import { useCharacterApiStore } from "../../stores/CharacterApiStore";
 export default defineComponent({
   name: "TheListFinder",
   setup() {
-    const { setLoadingList } = useMainStore();
+    const { setLoadingList, setIsError } = useMainStore();
     const { fetchData, setPhraseToFilter, setPageNumber } =
       useCharacterApiStore();
 
@@ -43,7 +43,12 @@ export default defineComponent({
         setPageNumber(1);
         setPhraseToFilter(phrase.value);
         setLoadingList(true);
-        fetchData().then(() => setTimeout(() => setLoadingList(false), 500));
+        fetchData()
+          .then(() => {
+            setIsError(false);
+            setTimeout(() => setLoadingList(false), 500);
+          })
+          .catch(() => setIsError(true));
       }, 2000);
     };
 

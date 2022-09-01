@@ -5,6 +5,7 @@ export const useMainStore = defineStore("Main", {
     return {
       showDescriptionModal: false,
       loadingList: false,
+      isError: false,
     };
   },
   actions: {
@@ -13,6 +14,9 @@ export const useMainStore = defineStore("Main", {
     },
     setLoadingList(value: boolean) {
       this.loadingList = value;
+    },
+    setIsError(value: boolean) {
+      this.isError = value;
     },
   },
 });
