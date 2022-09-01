@@ -27,9 +27,6 @@ export default defineComponent({
       type: Object as PropType<CharacterType>,
     },
   },
-  // setup() {
-
-  // },
 });
 </script>
 

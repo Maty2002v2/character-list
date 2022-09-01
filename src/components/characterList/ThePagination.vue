@@ -6,6 +6,7 @@
       :page-size="1"
       :background="true"
       :small="windowWidth < 550"
+      :current-page="pageNumber"
       @current-change="currentChange"
     />
   </div>
@@ -21,8 +22,9 @@ import { useMainStore } from "../../stores/MainStore";
 export default defineComponent({
   name: "ThePagination",
   setup() {
-    const { resultApi } = storeToRefs(useCharacterApiStore());
-    const { fetchPageYouWant } = useCharacterApiStore();
+    const { resultApi, pageNumber } = storeToRefs(useCharacterApiStore());
+    const { fetchData, setPageNumber } = useCharacterApiStore();
+
     const { setLoadingList } = useMainStore();
 
     const windowWidth = ref(window.innerWidth);
@@ -31,14 +33,13 @@ export default defineComponent({
     onMounted(() => window.addEventListener("resize", onWidthChange));
     onUnmounted(() => window.removeEventListener("resize", onWidthChange));
 
-    const currentPage = ref(1);
-    const currentChange = (value: number) => (currentPage.value = value);
-    watch(currentPage, (newValue) => {
+    const currentChange = (value: number) => setPageNumber(value);
+    watch(pageNumber, () => {
       setLoadingList(true);
-      fetchPageYouWant(newValue).then(() => setLoadingList(false));
+      fetchData().then(() => setTimeout(() => setLoadingList(false), 500));
     });
 
-    return { windowWidth, resultApi, currentChange };
+    return { windowWidth, resultApi, pageNumber, currentChange };
   },
 });
 </script>

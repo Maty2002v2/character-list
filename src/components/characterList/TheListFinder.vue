@@ -17,11 +17,14 @@
 import { defineComponent, ref, onUnmounted } from "vue";
 
 import { useMainStore } from "../../stores/MainStore";
+import { useCharacterApiStore } from "../../stores/CharacterApiStore";
 
 export default defineComponent({
   name: "TheListFinder",
   setup() {
-    const { setPhraseToFilter, setLoadingList } = useMainStore();
+    const { setLoadingList } = useMainStore();
+    const { fetchData, setPhraseToFilter, setPageNumber } =
+      useCharacterApiStore();
 
     let timeout = ref(null);
 
@@ -37,10 +40,10 @@ export default defineComponent({
       }
 
       timeout.value = setTimeout(() => {
-        console.log("elo");
-        setLoadingList(true);
+        setPageNumber(1);
         setPhraseToFilter(phrase.value);
-        setTimeout(() => setLoadingList(false), 500);
+        setLoadingList(true);
+        fetchData().then(() => setTimeout(() => setLoadingList(false), 500));
       }, 2000);
     };
 

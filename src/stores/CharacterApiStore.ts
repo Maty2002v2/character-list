@@ -1,7 +1,5 @@
 import axios from "axios";
-import { defineStore, storeToRefs } from "pinia";
-
-import { useMainStore } from "./MainStore";
+import { defineStore } from "pinia";
 
 import ResultApiCharacter from "../types/ResultApiCharacter";
 
@@ -9,29 +7,35 @@ export const useCharacterApiStore = defineStore("CharacterApi", {
   state: () => {
     return {
       resultApi: Object as unknown as ResultApiCharacter,
+      phraseToFilter: "",
+      pageNumber: 1,
     };
   },
   getters: {
-    characterData: (state) => {
-      const { phraseToFilter } = storeToRefs(useMainStore());
+    characterData: (state) => state.resultApi.results,
+    url: (state) => {
+      let url = "https://rickandmortyapi.com/api/character/";
 
-      return state.resultApi.results.filter((character) =>
-        character.name
-          .toLowerCase()
-          .includes(phraseToFilter.value.toLowerCase())
-      );
+      url += `?page=${state.pageNumber}`;
+
+      if (state.phraseToFilter.length) {
+        url += `&name=${state.phraseToFilter}`;
+      }
+
+      return url;
     },
   },
   actions: {
     async fetchData() {
       await axios
-        .get("https://rickandmortyapi.com/api/character")
+        .get(this.url)
         .then((response) => (this.resultApi = response.data));
     },
-    async fetchPageYouWant(value: number) {
-      await axios
-        .get(`https://rickandmortyapi.com/api/character?page=${value}`)
-        .then((response) => (this.resultApi = response.data));
+    setPhraseToFilter(value: string) {
+      this.phraseToFilter = value;
+    },
+    setPageNumber(value: number) {
+      this.pageNumber = value;
     },
   },
 });
