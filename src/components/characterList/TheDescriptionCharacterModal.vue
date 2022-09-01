@@ -18,7 +18,9 @@
           <h1 class="description-character__h1">
             {{ character.name }}
           </h1>
-          <p class="description-character__p">Status: {{ character.status }}</p>
+          <p class="description-character__p">
+            Status: <i>{{ character.status }}</i>
+          </p>
           <p class="description-character__p">
             Species:
             <i>{{ character.species }}</i>
