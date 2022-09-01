@@ -95,7 +95,7 @@ export default defineComponent({
 
   &__h1 {
     overflow: hidden;
-    font-size: 1.5vw;
+    font-size: max(1.5vw, 15px);
     white-space: nowrap;
     text-overflow: ellipsis;
   }

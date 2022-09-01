@@ -28,5 +28,10 @@ export const useCharacterApiStore = defineStore("CharacterApi", {
         .get("https://rickandmortyapi.com/api/character")
         .then((response) => (this.resultApi = response.data));
     },
+    async fetchPageYouWant(value: number) {
+      await axios
+        .get(`https://rickandmortyapi.com/api/character?page=${value}`)
+        .then((response) => (this.resultApi = response.data));
+    },
   },
 });

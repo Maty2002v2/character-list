@@ -5,3 +5,17 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   background-color: $color-background;
 }
+
+.el-pagination {
+  margin: 30px 0px 20px 0px;
+  justify-content: center;
+}
+
+.el-pager li {
+  background: transparent !important;
+}
+
+.el-pagination .btn-next,
+.el-pagination .btn-prev {
+  background: $color-elements !important;
+}

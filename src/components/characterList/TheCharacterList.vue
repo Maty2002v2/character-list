@@ -6,6 +6,8 @@
 
     <app-loader v-show="loadingList" />
 
+    <the-pagination />
+
     <teleport to="#modal">
       <the-description-character-modal
         :character="selectedCharacter"
@@ -22,6 +24,7 @@ import TheList from "./TheList.vue";
 import TheDescriptionCharacterModal from "./TheDescriptionCharacterModal.vue";
 import TheListFinder from "./TheListFinder.vue";
 import AppLoader from "../AppLoader.vue";
+import ThePagination from "./ThePagination.vue";
 
 import { storeToRefs } from "pinia";
 import { useMainStore } from "../../stores/MainStore";
@@ -35,6 +38,7 @@ export default defineComponent({
     TheDescriptionCharacterModal,
     TheListFinder,
     AppLoader,
+    ThePagination,
   },
   setup() {
     const { showDescriptionModal, loadingList } = storeToRefs(useMainStore());
