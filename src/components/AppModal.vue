@@ -3,7 +3,7 @@
     enter-active-class="animate__animated animate__faster  animate__fadeIn"
     leave-active-class="animate__animated animate__faster animate__fadeOut"
   >
-    <div class="app-modal" v-show="isShow" @click.self="closeModal">
+    <div class="app-modal" v-show="isShow">
       <Transition
         enter-active-class="animate__animated animate__faster animate__bounceIn"
         leave-active-class="animate__animated animate__faster animate__fadeOut"
@@ -27,13 +27,6 @@ export default defineComponent({
       default: false,
     },
   },
-  emits: ["closeModal"],
-  setup(props, { emit }) {
-    const closeModal = () => {
-      emit("closeModal");
-    };
-    return { closeModal };
-  },
 });
 </script>
 
@@ -49,8 +42,7 @@ export default defineComponent({
   min-height: 100%;
   padding-top: 4vh;
   box-sizing: border-box;
-  background: rgba($color: #000000, $alpha: 0.3);
-  cursor: pointer;
+  background: rgba($color: #000000, $alpha: 0.4);
 
   &__slot {
     max-width: 500px;

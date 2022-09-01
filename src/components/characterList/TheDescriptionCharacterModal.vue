@@ -3,7 +3,7 @@
     <app-modal :isShow="isShow" @closeModal="hiddenModal">
       <div class="description-character">
         <button class="description-character__back-button" @click="hiddenModal">
-          Back
+          <i class="demo-icon icon-left"></i> Back
         </button>
         <img
           class="description-character__image"
@@ -94,8 +94,9 @@ export default defineComponent({
   }
 
   &__h1 {
-    white-space: nowrap;
     overflow: hidden;
+    font-size: 1.5vw;
+    white-space: nowrap;
     text-overflow: ellipsis;
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="character-list animate__animated animate__fadeIn">
-    <div class="character-list__list">
+  <div class="list animate__animated animate__fadeIn">
+    <div class="list__list">
       <list-item
         v-for="(character, index) in characterData"
         :key="index"
@@ -37,14 +37,21 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.character-list {
+.list {
   &__list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 50px;
-    padding: 40px;
+    gap: 70px;
+    max-width: 1290px;
     box-sizing: border-box;
+  }
+}
+
+@media only screen and (max-width: $extra-small) {
+  .list {
+    &__list {
+      justify-content: center;
+    }
   }
 }
 </style>

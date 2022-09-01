@@ -23,7 +23,7 @@ export default defineComponent({
 }
 
 .app-loader {
-  height: 100vh;
+  height: 70vh;
   display: grid;
   overflow: hidden;
 

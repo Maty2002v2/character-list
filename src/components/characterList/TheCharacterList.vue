@@ -1,6 +1,10 @@
 <template>
-  <div style="overflow: hidden">
-    <the-list @listItemHasSelected="showSelectedItem" />
+  <div class="character-list">
+    <the-list-finder />
+
+    <the-list v-show="!loadingList" @listItemHasSelected="showSelectedItem" />
+
+    <app-loader v-show="loadingList" />
 
     <teleport to="#modal">
       <the-description-character-modal
@@ -16,6 +20,8 @@ import { defineComponent, ref } from "vue";
 
 import TheList from "./TheList.vue";
 import TheDescriptionCharacterModal from "./TheDescriptionCharacterModal.vue";
+import TheListFinder from "./TheListFinder.vue";
+import AppLoader from "../AppLoader.vue";
 
 import { storeToRefs } from "pinia";
 import { useMainStore } from "../../stores/MainStore";
@@ -27,9 +33,11 @@ export default defineComponent({
   components: {
     TheList,
     TheDescriptionCharacterModal,
+    TheListFinder,
+    AppLoader,
   },
   setup() {
-    const { showDescriptionModal } = storeToRefs(useMainStore());
+    const { showDescriptionModal, loadingList } = storeToRefs(useMainStore());
     const { setShowDescriptionModal } = useMainStore();
 
     let selectedCharacter = ref({});
@@ -40,7 +48,18 @@ export default defineComponent({
       document.documentElement.style.overflow = "hidden";
     };
 
-    return { selectedCharacter, showDescriptionModal, showSelectedItem };
+    return {
+      selectedCharacter,
+      showDescriptionModal,
+      loadingList,
+      showSelectedItem,
+    };
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.character-list {
+  margin: 10px 50px;
+}
+</style>
